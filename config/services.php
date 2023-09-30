@@ -33,7 +33,7 @@ return [
     'google' => [
         'client_id' => "367796673414-8k22rsmc2ng56g9opt59hrjqq7bmjdml.apps.googleusercontent.com",
         'client_secret' => "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",
-        'redirect' => env('APP_URL') . '/login',
+        'redirect' => env('FRONT_URL') . '/login',
     ],
 
 ];
