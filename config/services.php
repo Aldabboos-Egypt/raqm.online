@@ -33,14 +33,14 @@ return [
     'google' => [
         'client_id' => "367796673414-8k22rsmc2ng56g9opt59hrjqq7bmjdml.apps.googleusercontent.com",
         'client_secret' => "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",
-        'redirect' => env('FRONT_URL') . '/login',
+        'redirect' => env('APP_URL') . '/login',
     ],
 
     // add facebook
     'facebook' => [
         'client_id' => "964444974618331",
         'client_secret' => "d0ee880978c945ea58cadef91106ce09",
-        'redirect' => env('FRONT_URL') . '/login',
+        'redirect' => env('APP_URL') . '/login',
     ],
 
 ];
