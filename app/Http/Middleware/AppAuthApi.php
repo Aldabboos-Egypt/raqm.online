@@ -24,7 +24,7 @@ class AppAuthApi
      */
     public function handle(Request $request, Closure $next)
     {
-        //return response($request->getHost());
+
         $token = $request->header('app-token');
         // return response([
         //     $request->getHost(),

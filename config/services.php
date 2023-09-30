@@ -36,4 +36,11 @@ return [
         'redirect' => env('FRONT_URL') . '/login',
     ],
 
+    // add facebook
+    'facebook' => [
+        'client_id' => "964444974618331",
+        'client_secret' => "d0ee880978c945ea58cadef91106ce09",
+        'redirect' => env('FRONT_URL') . '/login',
+    ],
+
 ];

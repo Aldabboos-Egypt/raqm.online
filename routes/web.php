@@ -58,6 +58,16 @@ Route::get('/login', function () {
 
         } catch (\Exception $e) {
         }
+        try {
+            $data = Socialite::driver('facebook')->user();
+            $user = User::createFromGoogle($data);
+
+            if ($user) {
+                return redirect(env('FRONT_URL') . '/login?oauth_type=facebook&oauth_id=' . $user->oauth_id);
+            }
+
+        } catch (\Exception $e) {
+        }
     }
     return redirect(env('FRONT_URL') . '/login');
 
@@ -66,7 +76,7 @@ Route::get('/login', function () {
 Route::get('/auth/g/redirect', function () {
     return Socialite::driver('google')->redirect();
 });
-
+// add facebook
 Route::get('/auth/f/redirect', function () {
     return Socialite::driver('facebook')->redirect();
 });
