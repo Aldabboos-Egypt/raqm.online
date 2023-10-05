@@ -38,8 +38,8 @@ return [
 
     // add facebook
     'facebook' => [
-        'client_id' => "964444974618331",
-        'client_secret' => "d0ee880978c945ea58cadef91106ce09",
+        'client_id' => "281264218169210",
+        'client_secret' => "5a6f05b8eca996166235a5f9ca98d261",
         'redirect' => env('APP_URL') . '/login',
     ],
 
