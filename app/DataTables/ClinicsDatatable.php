@@ -92,10 +92,12 @@ class ClinicsDatatable extends DataTable
      */
     public function html()
     {
+        $url = url('/dashboard/clinics');
+        $url = str_replace("http", "https", $url);
         return $this->builder()
             ->setTableId('clinicsdatatable')
             ->columns($this->getColumns())
-            ->minifiedAjax();
+            ->minifiedAjax($url);
         // ->dom('Bfrtip')
         // ->orderBy(1)
         // ->buttons(
