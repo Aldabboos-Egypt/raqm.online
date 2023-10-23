@@ -108,6 +108,14 @@ class ClinicController extends Controller
                 }
             })
             ->where(function ($q) use ($request) {
+                if ($request->category_id) {
+                    $subcategoryIds = DB::table('subcategories')->where('category_id', $request->category_id)->pluck('id')->toArray();
+                    if (count($subcategoryIds) > 0) {
+                        $q->whereIn('clinic_subcategories.subcategory_id', $subcategoryIds);
+                    }
+                }
+            })
+            ->where(function ($q) use ($request) {
                 if ($request->subcategory_ids) {
                     $subcategoryIds = array_filter($request->subcategory_ids, function ($v, $k) {
                         return $v > 0;

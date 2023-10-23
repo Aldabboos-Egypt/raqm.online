@@ -48,6 +48,7 @@ class DashboardController extends Controller
                 DB::raw('CONCAT(MONTH(CREATED_AT), "/", DAY(CREATED_AT)) as title'),
                 DB::raw('count(ip) as total')
             )
+            ->take(50)
             ->get();
 
         return $chart;
