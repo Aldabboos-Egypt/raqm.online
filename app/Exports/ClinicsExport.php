@@ -24,7 +24,7 @@ class ClinicsExport implements FromCollection, WithHeadings
     {
         return Clinic::select(
             '*',
-            DB::raw('(select subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id) as subcategory_id'),
+            DB::raw('(select subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id) as subcategory_id LIMIT 1'),
         )->where('title', 'like', '%' . $this->search . '%')
             ->orWhere('description', 'like', '%' . $this->search . '%')
             ->orWhere('phone', 'like', '%' . $this->search . '%')
