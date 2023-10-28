@@ -20,7 +20,7 @@
                             {!! Form::select('subcategory', $subCategories, null, [
                                 'class' => 'form-select select2',
                                 'placeholder' => __('lang.choose_subcategory'),
-                                ]) !!}
+                            ]) !!}
                         </div>
 
                         <div class="col-md-6">
@@ -133,19 +133,20 @@
 
         // change is_trust value
         function isTrust(el, id) {
-            if($(el).val() == 0){
+            if ($(el).val() == 0) {
                 $(el).val(1);
                 is_trust = 1
             } else {
                 $(el).val(0);
                 is_trust = 0;
             }
-            $.post("{{ route('dashboard.clinics.is_trust') }}", {
+            var url = "{{ route('dashboard.clinics.is_trust') }}";
+            $.post(url.replace('http', 'https'), {
                 _token: "{{ csrf_token() }}",
                 id: id,
                 is_trust: is_trust,
             }, function(results) {
-                if(results.success == true){
+                if (results.success == true) {
                     iziToast.success({
                         title: results.message,
                     });
