@@ -26,6 +26,8 @@ Route::group(['middleware' => ['app_auth_api']], function () {
 // Auth
     Route::post('auth/login', [AuthController::class, 'login']);
     Route::post('auth/register', [AuthController::class, 'register']);
+    Route::post('auth/forget-password', [AuthController::class, 'forgetPassword']);
+    Route::post('auth/reset-password', [AuthController::class, 'resetPassword']);
     Route::post('auth/external-login', [AuthController::class, 'externalLogin']);
     Route::post('auth/verify', [AuthController::class, 'verify']);
 

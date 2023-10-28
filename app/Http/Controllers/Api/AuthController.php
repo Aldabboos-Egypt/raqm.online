@@ -61,6 +61,44 @@ class AuthController extends Controller
         return responseJson(false, trans('verify_code_sent_to_your_email'), ['verfiy' => true]);
     }
 
+    public function forgetPassword(Request $request)
+    {
+        $data = $request->all();
+        $user = User::where('email', $data['email'])->first();
+
+        if (!$user) {
+            return responseJson(false, trans('email_not_found'), null);
+        }
+
+        $user->update([
+            'verification_key' => LoginService::getInstance()->randCode(),
+        ]);
+
+        try {
+            $user->notify(new AccountConfirmation($user->verification_key, $user->username));
+        } catch (\Exception $e) {
+
+        }
+
+        return responseJson(true, trans('verify_code_sent_to_your_email'), ['reset' => true]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $data = $request->all();
+        $user = User::where('verification_key', $data['verification_key'])->first();
+        if (!$user) {
+            return responseJson(false, trans('admin.invalid_verificatation_code'), null);
+        }
+
+        $user->update([
+            'password' => bcrypt($data['password']),
+            'status' => User::ACTIVE,
+        ]);
+        $token = auth('api')->login($user);
+        return $this->respondWithToken($token);
+    }
+
     public function updateProfile(Request $request)
     {
         $data = $request->only(['username', 'phone', 'password', 'image']);
