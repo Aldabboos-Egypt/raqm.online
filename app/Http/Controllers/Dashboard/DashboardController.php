@@ -43,7 +43,7 @@ class DashboardController extends Controller
         $endOfMonth = Carbon::now()->endOfMonth()->format('Y-m-d');
         $chart = DB::table('clinic_views')
             ->whereBetween(DB::raw('Date(clinic_views.created_at)'), [$startOfMonth, $endOfMonth])
-            ->groupBy(['clinic_views.clinic_id', 'created_at'])
+            ->groupBy([DB::raw('CONCAT(MONTH(CREATED_AT), "/", DAY(CREATED_AT))')])
             ->select(
                 DB::raw('CONCAT(MONTH(CREATED_AT), "/", DAY(CREATED_AT)) as title'),
                 DB::raw('count(ip) as total')
