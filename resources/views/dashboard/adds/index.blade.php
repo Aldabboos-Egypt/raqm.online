@@ -91,6 +91,11 @@
                         $(container)
                             .html(res)
                             .modal('show');
+                        $('form').each(function() {
+                            var newAction = $(this).attr('action').replace('http:',
+                                'https:');
+                            $(this).attr('action', newAction);
+                        });
                     }
                 });
             });
