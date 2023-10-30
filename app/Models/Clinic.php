@@ -64,7 +64,7 @@ class Clinic extends Model
 
     public function getContactUrlAttribute()
     {
-        return url('/') . "/v/" . $this->clinic_id;
+        return env('FRONT_URL') . "/v/" . $this->clinic_id;
     }
 
     public function subCategory()
