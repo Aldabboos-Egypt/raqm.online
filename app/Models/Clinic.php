@@ -56,6 +56,7 @@ class Clinic extends Model
         'opening_hours',
         'amenities',
         'accepts_new_patients',
+        'published',
     ];
 
     protected $appends = [
