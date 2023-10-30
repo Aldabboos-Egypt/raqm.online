@@ -253,7 +253,7 @@
     <script>
         var options = {
             chart: {
-                type: 'pie'
+                type: 'line'
             },
             series: [{
                 name: '{{ __('lang.views_per_month') }}',
