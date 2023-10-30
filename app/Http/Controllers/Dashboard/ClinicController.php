@@ -163,7 +163,7 @@ class ClinicController extends Controller
             'limit' => ['nullable', 'numeric'],
             'search' => ['nullable'],
         ]);
-        return Excel::download(new ClinicsExport($request->search, $request->limit), 'clinics.xlsx');
+        return Excel::download(new ClinicsExport($request->search, $request->limit ?? 20), 'clinics.xlsx');
     }
 
     /**
