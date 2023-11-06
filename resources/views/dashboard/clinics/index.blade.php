@@ -59,7 +59,7 @@
                         </div>
 
                         <div>
-                            <a href="{{ route('dashboard.clinics.export') }} " id="export"
+                            <a target="_blank" href="{{ route('dashboard.clinics.export') }} " _id="export"
                                 class="btn btn-outline-primary">@lang('lang.export')</a>
                             <input type="null" class="px-2 py-1" id="limit" placeholder="{{ __('lang.number_of_records') }}">
                         </div>
