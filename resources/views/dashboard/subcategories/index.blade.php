@@ -18,8 +18,8 @@
             @component('dashboard.layouts.includes.card', ['title' => __('lang.subcategories')])
 
                 @slot('tool')
-                    <a data-href="{{ route('dashboard.subcategories.create') }}" data-container=".ceate-category-button"
-                        class="btn btn-primary btn-modal">@lang('lang.add')</a>
+                    <a data-href="{{ str_replace('http', 'https', route('dashboard.subcategories.create')) }}"
+                        data-container=".ceate-category-button" class="btn btn-primary btn-modal">@lang('lang.add')</a>
                 @endslot
 
                 @slot('content')
@@ -39,9 +39,12 @@
                                     <td>{{ $subcategory->description }}</td>
                                     <td>{{ $subcategory->category->name }}</td>
                                     <td class="d-flex justify-content-start">
-                                        <a data-href="{{ route('dashboard.subcategories.edit',$subcategory->id) }}" data-container=".edit-category-button" id="btn-edit-category" style="cursor: pointer" class=" text-primary "> <span data-feather="edit"></span></a>
+                                        <a data-href="{{ str_replace('http', 'https', route('dashboard.subcategories.edit', $subcategory->id)) }}"
+                                            data-container=".edit-category-button" id="btn-edit-category" style="cursor: pointer"
+                                            class=" text-primary "> <span data-feather="edit"></span></a>
 
-                                        <a href="{{ route('dashboard.subcategories.destroy', $subcategory->id) }}" style="font-size: 20px" class="sw-alert text-danger">
+                                        <a href="{{ str_replace('http', 'https', route('dashboard.subcategories.destroy', $subcategory->id)) }}"
+                                            style="font-size: 20px" class="sw-alert text-danger">
                                             <span data-feather="trash-2"></span>
                                         </a>
                                     </td>
