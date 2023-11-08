@@ -67,6 +67,24 @@
                 $(this).attr('data-href', href);
             }
         });
+
+        $('form').each(function() {
+            var action = $(this).attr('action');
+            if (action) {
+                action = action.replace('http:', 'https:');
+                $(this).attr('action', action);
+            }
+        });
+
+        document.addEventListener('click', function() {
+            $('form').each(function() {
+                var action = $(this).attr('action');
+                if (action) {
+                    action = action.replace('http:', 'https:');
+                    $(this).attr('action', action);
+                }
+            });
+        })
     </script>
 
     {{-- <script>
