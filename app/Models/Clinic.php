@@ -56,12 +56,18 @@ class Clinic extends Model
         'opening_hours',
         'amenities',
         'accepts_new_patients',
-        'published',
+        'publish',
+        'is_trust',
     ];
 
     protected $appends = [
-        'contact_url',
+        'contact_url', 'subcategory_id',
     ];
+
+    public function getSubcategoryIdAttribute()
+    {
+        return optional($this->subCategory()->first())->id;
+    }
 
     public function getContactUrlAttribute()
     {
@@ -76,5 +82,14 @@ class Clinic extends Model
     public function getViews()
     {
         return DB::table('clinic_views')->where('clinic_id', $this->clinic_id)->count();
+    }
+
+    public function category()
+    {
+        $subCategory = $this->subCategory()->first();
+        if ($subCategory) {
+            return $subCategory->category;
+        }
+        return null;
     }
 }

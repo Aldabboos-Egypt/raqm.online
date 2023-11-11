@@ -59,9 +59,9 @@
                         </div>
 
                         <div>
-                            <a target="_blank" href="{{ route('dashboard.clinics.export') }} " _id="export"
+                            <a target="_blank" href="{{ route('dashboard.clinics.export') }} " id="exportLink"
                                 class="btn btn-outline-primary">@lang('lang.export')</a>
-                            <input type="null" class="px-2 py-1" id="limit" placeholder="{{ __('lang.number_of_records') }}">
+                            <input type="number" class="px-2 py-1" id="limit" placeholder="{{ __('lang.number_of_records') }}">
                         </div>
 
                     </div>
@@ -110,6 +110,18 @@
             });
         });
 
+
+        $('#limit').keyup(function() {
+            let href = $('#exportLink').attr('href');
+            // replace all spaces in string href
+            href = href.replace(/\s/g, '');
+            let baseLink = "{{ toHttps(route('dashboard.clinics.export')) }}";
+
+            href = baseLink + "?limit=" + $('#limit').val();
+            $('#exportLink').attr('href', href);
+            console.log(href)
+        });
+
         $('#export').click(function(e) {
             e.preventDefault();
             window.location.href = "{{ route('dashboard.clinics.export') }}?search=" + $('#search').val() +
@@ -140,11 +152,34 @@
                 $(el).val(0);
                 is_trust = 0;
             }
-            var url = "{{ route('dashboard.clinics.is_trust') }}";
-            $.post(url.replace('http', 'https'), {
+            var url = "{{ toHttps(route('dashboard.clinics.is_trust')) }}";
+            $.post(url, {
                 _token: "{{ csrf_token() }}",
                 id: id,
                 is_trust: is_trust,
+            }, function(results) {
+                if (results.success == true) {
+                    iziToast.success({
+                        title: results.message,
+                    });
+                }
+            });
+        }
+
+        // change is_trust value
+        function publishMethod(el, id) {
+            if ($(el).val() == 0) {
+                $(el).val(1);
+                publish = 1
+            } else {
+                $(el).val(0);
+                publish = 0;
+            }
+            var url = "{{ toHttps(route('dashboard.clinics.publish')) }}";
+            $.post(url, {
+                _token: "{{ csrf_token() }}",
+                id: id,
+                publish: publish,
             }, function(results) {
                 if (results.success == true) {
                     iziToast.success({

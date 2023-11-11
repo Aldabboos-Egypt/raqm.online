@@ -16,13 +16,18 @@ class RegisterApi extends FormRequest
     {
         return [
             'username' => 'required|string',
-            'phone' => 'required|string',
+            'phone' => [
+                'required',
+                'string',
+                Rule::unique('users', 'phone'),
+            ],
+            // 'required|string',
             'email' => [
                 'required',
-                'email:rfc',
+                // 'email:rfc',
                 'string',
                 'max:191',
-                Rule::unique('users', 'email'),
+                // Rule::unique('users', 'email'),
             ],
             'password' => 'min:8|required|string',
         ];

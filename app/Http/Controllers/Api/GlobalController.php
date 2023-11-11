@@ -45,4 +45,6 @@ class GlobalController extends Controller
         return responseJson(true, 'success');
     }
 
+
+
 }

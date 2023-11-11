@@ -45,11 +45,18 @@ class ClinicsDatatable extends DataTable
                 }
                 return $checkbox;
             })
+            ->addColumn('publish', function ($row) {
+                $checkbox = '<input type="checkbox" onclick="publishMethod(this, ' . $row->clinic_id . ')"  name="publish" value="' . $row->publish . '" class="w3-check">';
+                if ($row->publish == 1) {
+                    $checkbox = '<input type="checkbox" onclick="publishMethod(this, ' . $row->clinic_id . ')"  name="publish" value="' . $row->publish . '" class="w3-check" checked>';
+                }
+                return $checkbox;
+            })
             ->filterColumn('subcategory', function ($query, $keyword) {
                 $query->orWhere('subcategories.name', 'LIKE', "%{$keyword}%");
             })
 
-            ->rawColumns(['action', 'image', 'subcategory', 'check', 'is_trust']);
+            ->rawColumns(['action', 'image', 'subcategory', 'check', 'is_trust', 'publish']);
     }
 
     /**
@@ -82,6 +89,15 @@ class ClinicsDatatable extends DataTable
 
         }
 
+        if ($publish = request('publish')) {
+            if ($publish == 'published') {
+                $query->where('clinics.publish', 1);
+            } else {
+                $query->where('clinics.publish', 0);
+            }
+
+        }
+
         return $query;
     }
 
@@ -93,7 +109,7 @@ class ClinicsDatatable extends DataTable
     public function html()
     {
         $url = url('/dashboard/clinics');
-        $url = str_replace("http", "https", $url);
+        $url = toHttps($url);
         return $this->builder()
             ->setTableId('clinicsdatatable')
             ->columns($this->getColumns())
@@ -167,6 +183,10 @@ class ClinicsDatatable extends DataTable
 
             'is_trust' => [
                 'title' => __('lang.is_trust'),
+            ],
+
+            'publish' => [
+                'title' => __('lang.publish'),
             ],
 
             'action' => [

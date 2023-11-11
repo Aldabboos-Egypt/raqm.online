@@ -59,6 +59,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:admin']], function
     Route::post('clinics/import', [ClinicController::class, 'import'])->name('dashboard.clinics.import');
 
     Route::post('clinics/is_trust', [ClinicController::class, 'isTrust'])->name('dashboard.clinics.is_trust');
+    Route::post('clinics/publish', [ClinicController::class, 'publish'])->name('dashboard.clinics.publish');
 
     // Geographics
     Route::get('geographics', 'GeographicController@index')->name('dashboard.geographics.index');

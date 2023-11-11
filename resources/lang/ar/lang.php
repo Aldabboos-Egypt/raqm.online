@@ -1,7 +1,9 @@
 <?php
 
 return [
+    'choose_category' => 'اختر الفئه',
     'welcome' => 'مرحبا',
+    'publish' => 'مفعل',
     'thanks_registering' => 'شكرا لتسجيلك',
     'ex_time_register' => 'من فضلك استخدم الكود لتفعيل اميلك',
     'code' => 'كود التفعيل',

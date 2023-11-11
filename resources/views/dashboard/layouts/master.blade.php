@@ -60,7 +60,7 @@
         var $disabledResults = $(".search-select");
         $disabledResults.select2();
 
-        $('a').each(function() {
+        {{-- $('a').each(function() {
             var href = $(this).attr('data-href');
             if (href) {
                 href = href.replace('http:', 'https:');
@@ -84,7 +84,7 @@
                     $(this).attr('action', action);
                 }
             });
-        })
+        }) --}}
     </script>
 
     {{-- <script>

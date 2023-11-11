@@ -8,11 +8,12 @@ use App\Http\Requests\Auth\LoginApi;
 use App\Http\Requests\Auth\RegisterApi;
 use App\Http\Requests\Auth\VerifyUser;
 use App\Models\User;
-use App\Notifications\Seller\AccountConfirmation;
 use App\Services\LoginService;
+use App\Services\WhatsappService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class AuthController extends Controller
@@ -45,6 +46,16 @@ class AuthController extends Controller
 
     public function register(RegisterApi $request)
     {
+        // check on whatsapp number
+        $whatsappInstance = WhatsappService::getInstance();
+        $whatsappNumber = $request->input('phone');
+        $isValidWhatsappNumber = $whatsappInstance->checkWhatsapp($whatsappNumber);
+
+        if (!$isValidWhatsappNumber) {
+            return responseJson(false, 'invalid_whatsapp_number');
+        }
+
+        DB::beginTransaction();
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
         $data['status'] = User::PENDING;
@@ -52,22 +63,32 @@ class AuthController extends Controller
         $data['verification_key'] = LoginService::getInstance()->randCode();
         $user = User::create($data);
 
+        DB::commit();
         try {
-            $user->notify(new AccountConfirmation($user->verification_key, $user->username));
-        } catch (\Exception $e) {
-
+            $whatsappInstance->sendVerificationCode($whatsappNumber, $user->verification_key, $user->username);
+            // $user->notify(new AccountConfirmation($user->verification_key, $user->username));
+        } catch (Exception $e) {
+            DB::rollBack();
         }
 
-        return responseJson(false, trans('verify_code_sent_to_your_email'), ['verfiy' => true]);
+        return responseJson(false, trans('verify_code_sent_to_your_phone'), ['verfiy' => true]);
     }
 
     public function forgetPassword(Request $request)
     {
+        // check on whatsapp number
+        $whatsappInstance = WhatsappService::getInstance();
+        $whatsappNumber = $request->input('phone');
+        $isValidWhatsappNumber = $whatsappInstance->checkWhatsapp($whatsappNumber);
+
+        if (!$isValidWhatsappNumber) {
+            return responseJson(false, 'invalid_whatsapp_number');
+        }
         $data = $request->all();
-        $user = User::where('email', $data['email'])->first();
+        $user = User::where('phone', $data['phone'])->first();
 
         if (!$user) {
-            return responseJson(false, trans('email_not_found'), null);
+            return responseJson(false, trans('account_not_exists'), null);
         }
 
         $user->update([
@@ -75,12 +96,13 @@ class AuthController extends Controller
         ]);
 
         try {
-            $user->notify(new AccountConfirmation($user->verification_key, $user->username));
+            $whatsappInstance->sendVerificationCode($whatsappNumber, $user->verification_key, $user->username);
+            // $user->notify(new AccountConfirmation($user->verification_key, $user->username));
         } catch (\Exception $e) {
 
         }
 
-        return responseJson(true, trans('verify_code_sent_to_your_email'), ['reset' => true]);
+        return responseJson(true, trans('verify_code_sent_to_your_phone'), ['reset' => true]);
     }
 
     public function resetPassword(Request $request)

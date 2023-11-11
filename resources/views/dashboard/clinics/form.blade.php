@@ -62,17 +62,26 @@
                 <div class="form stepper-one row g-3 needs-validation custom-input" novalidate="" style="display: flex;">
 
                     <div class="col-md-12 pt-3">
-                        {!! Form::label('subcategory_id', __('lang.subcategory')) !!}
-                        {!! Form::select(
-                            'subcategory_id',
-                            $subCategories,
-                            old('subcategory_id', $clinic->subCategory->first()->id ?? ''),
-                            [
-                                'class' => 'form-control form-select select2',
-                                'placeholder' => __('lang.choose_subcategory'),
-                            ],
-                        ) !!}
+                        {!! Form::label('category_id', __('lang.category')) !!}
+                        {!! Form::select('category_id', $categories, old('category_id', optional($clinic->category())->id ?? ''), [
+                            'class' => 'form-control form-select select2_',
+                            'placeholder' => __('lang.choose_category'),
+                            'onchange' => 'getSubCategories(this)',
+                        ]) !!}
                     </div>
+
+                    <div class="col-md-12 pt-3">
+                        {!! Form::label('subcategory_id', __('lang.subcategory')) !!}
+                        <select class="form-select" name="subcategory_id" id="subcategory_id">
+                            <option value="">{{ __('lang.choose_subcategory') }}</option>
+                            @foreach ($subCategories as $item)
+                                <option class="cat-option cat-{{ $item->category_id }}" value="{{ $item->id }}"
+                                    {{ old('subcategory_id') == $item->id || $clinic->subcategory_id == $item->id ? 'selected' : '' }}>
+                                    {{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
 
                     <div class="col-md-6 pt-3">
                         {!! Form::label('url', __('lang.url')) !!}
@@ -98,13 +107,6 @@
                     <div class="col-md-6 pt-3">
                         {!! Form::label('price', __('lang.price')) !!}
                         {!! Form::text('price', old('price', $clinic->price), [
-                            'class' => 'form-control',
-                        ]) !!}
-                    </div>
-
-                    <div class="col-md-6 pt-3">
-                        {!! Form::label('category_name', __('lang.category_name')) !!}
-                        {!! Form::text('category_name', old('category_name', $clinic->category_name), [
                             'class' => 'form-control',
                         ]) !!}
                     </div>
@@ -437,4 +439,10 @@
     <script src="{{ asset('admin/assets/js/form-wizard_image-upload.js') }}"></script>
     <script src="{{ asset('admin/assets/js/cuba_assets_js_script.js') }}"></script>
 
+    <script>
+        function getSubCategories(categorySelect) {
+            $('.cat-option').hide();
+            $('.cat-' + $(categorySelect).val()).show();
+        }
+    </script>
 @endsection

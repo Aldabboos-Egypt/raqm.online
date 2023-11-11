@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ClinicRequest;
 use App\Http\Requests\QuickUpdateRequest;
 use App\Imports\ClinicsImport;
+use App\Models\Category;
 use App\Models\Clinic;
 use App\Models\GeographicData;
 use App\Models\Subcategory;
@@ -34,9 +35,10 @@ class ClinicController extends Controller
     public function create()
     {
         $clinic = new Clinic();
-        $subCategories = Subcategory::pluck('name', 'id');
+        $subCategories = Subcategory::get();
         $cities = GeographicData::pluck('city', 'city_id');
-        return view('dashboard.clinics.form', compact('clinic', 'subCategories', 'cities'));
+        $categories = Category::pluck('name', 'id');
+        return view('dashboard.clinics.form', compact('clinic', 'categories', 'subCategories', 'cities'));
     }
 
     /**
@@ -49,6 +51,8 @@ class ClinicController extends Controller
         $data = $request->validated();
         DB::beginTransaction();
         $clinic = Clinic::create($data);
+
+        DB::table('clinic_subcategories')->where('clinic_id', $clinic->clinic_id)->delete();
         DB::table('clinic_subcategories')->insert([
             'clinic_id' => $clinic->clinic_id,
             'subcategory_id' => $data['subcategory_id'],
@@ -66,9 +70,10 @@ class ClinicController extends Controller
     public function edit($id)
     {
         $clinic = Clinic::findOrFail($id);
-        $subCategories = Subcategory::pluck('name', 'id');
+        $subCategories = Subcategory::get();
+        $categories = Category::pluck('name', 'id');
         $cities = GeographicData::pluck('city', 'city_id');
-        return view('dashboard.clinics.form', compact('clinic', 'subCategories', 'cities'));
+        return view('dashboard.clinics.form', compact('clinic', 'categories', 'subCategories', 'cities'));
     }
 
     /**
@@ -81,7 +86,10 @@ class ClinicController extends Controller
     {
         $clinic = Clinic::findOrFail($id);
         $data = $request->validated();
-        DB::table('clinic_subcategories')->updateOrInsert([
+
+        DB::table('clinic_subcategories')->where('clinic_id', $clinic->clinic_id)->delete();
+        DB::table('clinic_subcategories')->insert([
+            'clinic_id' => $clinic->clinic_id,
             'subcategory_id' => $data['subcategory_id'],
         ]);
         $clinic->update($data);
@@ -157,12 +165,24 @@ class ClinicController extends Controller
         ]);
     }
 
+    public function publish(Request $request)
+    {
+        $clinic = Clinic::findOrFail($request->id);
+        $clinic->publish = $request->publish;
+        $clinic->save();
+        return response()->json([
+            'success' => true,
+            'message' => __('lang.done'),
+        ]);
+    }
+
     public function export(Request $request)
     {
         $request->validate([
             'limit' => ['nullable', 'numeric'],
             'search' => ['nullable'],
         ]);
+        // dd($request->limit);
         return Excel::download(new ClinicsExport($request->search, $request->limit ?? 20), 'clinics.xlsx');
     }
 

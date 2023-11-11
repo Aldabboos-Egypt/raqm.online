@@ -91,3 +91,16 @@ if (!function_exists('isMobile')) {
         }
     }
 }
+
+/**
+ * Checks if user agent is mobile or not
+ *
+ * @return boolean
+ */
+if (!function_exists('toHttps')) {
+    function toHttps($url)
+    {
+        // return $url;
+        return str_replace('http://', 'https://', $url);
+    }
+}
