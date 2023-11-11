@@ -39,7 +39,7 @@ class AuthController extends Controller
      */
     public function login(LoginApi $request)
     {
-        $data = $request->only(['email', 'password']);
+        $data = $request->only(['phone', 'password']);
         $user = LoginService::getInstance()->login(LoginService::PHONE, $data);
         return $this->authAndResponse($user);
     }

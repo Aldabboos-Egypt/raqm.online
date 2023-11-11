@@ -16,7 +16,7 @@ class LoginApi extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email'], // will uuid
+            'phone' => ['required', 'string'], // will uuid
             'password' => 'required|string',
         ];
     }

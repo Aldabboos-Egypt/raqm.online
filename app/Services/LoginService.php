@@ -85,7 +85,7 @@ class LoginService
      */
     public function emailLogin(array $data)
     {
-        $user = User::where('email', $data['email'])
+        $user = User::where('phone', $data['phone'])
         //->where('password', $data['password'])
             ->first();
 
