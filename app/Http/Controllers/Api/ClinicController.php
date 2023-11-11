@@ -39,6 +39,7 @@ class ClinicController extends Controller
                 DB::raw("(select city from geographicdata where geographicdata.city_id = clinics.city_id limit 1) as city"),
                 DB::raw("(select name from subcategories where subcategories.id in (select clinic_subcategories.subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id) limit 1) as subcategory"),
             )
+            ->where('clinics.publish', 1)
         //->having('subcategory')
             ->take(10)
             ->get();
@@ -66,6 +67,7 @@ class ClinicController extends Controller
                 DB::raw("(select city from geographicdata where geographicdata.city_id = clinics.city_id limit 1) as city"),
                 DB::raw("(select name from subcategories where subcategories.id in (select clinic_subcategories.subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id) limit 1) as subcategory"),
             )
+            ->where('clinics.publish', 1)
             ->paginate(100);
 
         return response(new ClinicsResource($clinics));
@@ -155,6 +157,7 @@ class ClinicController extends Controller
                 DB::raw("(select subcategories.id from subcategories where subcategories.id in (select clinic_subcategories.subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id) limit 1) as subcategory_id"),
                 DB::raw("(select name from subcategories where subcategories.id in (select clinic_subcategories.subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id) limit 1) as subcategory"),
             )
+            ->where('clinics.publish', 1)
             ->whereNotNull(DB::raw("(select name from subcategories where subcategories.id in (select clinic_subcategories.subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id) limit 1)"));
         // ->groupBy('clinics.clinic_id')
         //->paginate(6);
