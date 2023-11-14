@@ -22,14 +22,26 @@ class ClinicsExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        return Clinic::select(
+        $query = Clinic::select(
             '*',
             DB::raw('(select subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id LIMIT 1) as subcategory_id'),
-        )->where('title', 'like', '%' . $this->search . '%')
-            ->orWhere('description', 'like', '%' . $this->search . '%')
-            ->orWhere('phone', 'like', '%' . $this->search . '%')
-            ->orWhere('price', $this->search)
-            ->take($this->limit)->get();
+        )
+            ->where(function ($q) {
+                if (request()->search) {
+                    $q->where('title', 'like', '%' . request()->search . '%')
+                        ->orWhere('description', 'like', '%' . request()->search . '%')
+                        ->orWhere('phone', 'like', '%' . request()->search . '%')
+                        ->orWhere('price', request()->search);
+                }
+            })
+            ->where(function ($q) {
+                if (request()->subcategory_id) {
+                    $q->where(DB::raw('(select subcategory_id from clinic_subcategories where clinic_subcategories.clinic_id = clinics.clinic_id LIMIT 1)'), request()->subcategory_id);
+                }
+            })
+            ->take($this->limit);
+
+        return $query->get();
     }
 
     public function headings(): array

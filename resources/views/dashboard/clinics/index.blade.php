@@ -18,7 +18,7 @@
                         <div class="col-md-6">
                             {!! Form::label('subcategory', __('lang.subcategory')) !!}
                             {!! Form::select('subcategory', $subCategories, null, [
-                                'class' => 'form-select select2',
+                                'class' => 'form-select select2 subcategory',
                                 'placeholder' => __('lang.choose_subcategory'),
                             ]) !!}
                         </div>
@@ -59,7 +59,7 @@
                         </div>
 
                         <div>
-                            <a target="_blank" href="{{ route('dashboard.clinics.export') }} " id="exportLink"
+                            <a target="_blank" href="#" onclick="exportExcel()"
                                 class="btn btn-outline-primary">@lang('lang.export')</a>
                             <input type="number" class="px-2 py-1" id="limit" placeholder="{{ __('lang.number_of_records') }}">
                         </div>
@@ -110,6 +110,16 @@
             });
         });
 
+        function exportExcel() {
+            let baseLink = "{{ toHttps(route('dashboard.clinics.export')) }}";
+            var data = {
+                subcategory_id: $('.subcategory').val(),
+                search: $('#search').val(),
+                limit: $('#limit').val(),
+            };
+            let newLink = baseLink + "?" + $.param(data);
+            window.open(newLink);
+        }
 
         $('#limit').keyup(function() {
             let href = $('#exportLink').attr('href');
