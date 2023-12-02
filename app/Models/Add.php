@@ -18,6 +18,7 @@ class Add extends Model implements TranslatableContract
         'show_clinic',
         'favourite_page',
         'mobile',
+        'blog',
     ];
     protected $fillable = [
         'image',

@@ -36,13 +36,13 @@
                                         </li>
 
                                         @permission('read-dashboard')
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.index') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.index') }}">
-                                                <span data-feather="home" class="text-muted"></span>
-                                                <span class="">{{ __('lang.dashboard') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.index') }}">
+                                                    <span data-feather="home" class="text-muted"></span>
+                                                    <span class="">{{ __('lang.dashboard') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Clinics --}}
@@ -66,138 +66,169 @@
 
                                         {{-- Categories --}}
                                         @permission('read-category')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.categories.index') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.categories.index') }}">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                        href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-learning">
-                                                    </use>
-                                                </svg>
-                                                <span class="">{{ __('lang.categories') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.categories.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.categories.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-learning">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.categories') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Clinics --}}
                                         @permission('read-clinic')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.clinics.*') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.clinics.index') }}">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                        href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-table">
-                                                    </use>
-                                                </svg>
-                                                <span class="">{{ __('lang.clinics') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.clinics.*') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.clinics.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-table">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.clinics') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Clinics --}}
                                         @permission('read-clinic_requests')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.clinic_requests.*') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.clinic_requests.index') }}">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                        href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-table">
-                                                    </use>
-                                                </svg>
-                                                <span class="">{{ __('lang.clinic_requests') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.clinic_requests.*') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.clinic_requests.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-table">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.clinic_requests') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Clinics --}}
                                         @permission('read-clinic_comments')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.clinic_comments.*') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.clinic_comments.index') }}">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                    href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-table">
-                                                    </use>
-                                                </svg>
-                                                <span class="">{{ __('lang.clinic_comments') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.clinic_comments.*') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.clinic_comments.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-table">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.clinic_comments') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Cities --}}
                                         @permission('read-city')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.geographics.index') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.geographics.index') }}">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                        href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-maps">
-                                                    </use>
-                                                </svg>
-                                                <span class="">{{ __('lang.geographics') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.geographics.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.geographics.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-maps">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.geographics') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Adds --}}
                                         @permission('read-add')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.adds.index') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.adds.index') }}">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                        href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-gallery">
-                                                    </use>
-                                                </svg>
-                                                <span class="">{{ __('lang.adds') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.adds.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.adds.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-gallery">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.adds') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Subcategories --}}
                                         @permission('read-subcategory')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.subcategories.index') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.subcategories.index') }}">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                        href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-widget">
-                                                    </use>
-                                                </svg>
-                                                <span>{{ __('lang.subcategories') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.subcategories.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.subcategories.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-widget">
+                                                        </use>
+                                                    </svg>
+                                                    <span>{{ __('lang.subcategories') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Admins --}}
                                         @permission('read-admin')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.admins.index') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.admins.index') }}"
-                                                data-bs-original-title="" title="">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                        href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-user">
-                                                    </use>
-                                                </svg>
-                                                <span>{{ __('lang.admins') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.admins.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.admins.index') }}"
+                                                    data-bs-original-title="" title="">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-user">
+                                                        </use>
+                                                    </svg>
+                                                    <span>{{ __('lang.admins') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                         {{-- Roles --}}
                                         @permission('read-role')
-                                        <li class="sidebar-list ">
-                                            <a class="sidebar-link {{ request()->routeIs('dashboard.roles.index') ? 'active' : '' }}"
-                                                href="{{ route('dashboard.roles.index') }}">
-                                                <svg class="stroke-icon">
-                                                    <use
-                                                        href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-social">
-                                                    </use>
-                                                </svg>
-                                                <span>{{ __('lang.roles') }}</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.roles.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.roles.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-social">
+                                                        </use>
+                                                    </svg>
+                                                    <span>{{ __('lang.roles') }}</span>
+                                                </a>
+                                            </li>
+                                        @endpermission
+
+
+                                        {{-- Categories --}}
+                                        @permission('read-category')
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.blog_category.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.blog_category.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-learning">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.blog_category') }}</span>
+                                                </a>
+                                            </li>
+                                        @endpermission
+
+                                        {{-- Categories --}}
+                                        @permission('read-category')
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.blogs.index') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.blogs.index') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-learning">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.blogs') }}</span>
+                                                </a>
+                                            </li>
                                         @endpermission
 
                                     </div>

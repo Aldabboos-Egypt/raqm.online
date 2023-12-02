@@ -40,6 +40,22 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:admin']], function
     Route::patch('categories/update/{id}', 'CategoryController@update')->name('dashboard.categories.update');
     Route::delete('categories/destroy/{id}', 'CategoryController@destroy')->name('dashboard.categories.destroy');
 
+    // blogs
+    Route::get('blogs', 'BlogController@index')->name('dashboard.blogs.index');
+    Route::get('blogs/create', 'BlogController@create')->name('dashboard.blogs.create');
+    Route::post('blogs/store', 'BlogController@store')->name('dashboard.blogs.store');
+    Route::get('blogs/edit/{id}', 'BlogController@edit')->name('dashboard.blogs.edit');
+    Route::patch('blogs/update/{id}', 'BlogController@update')->name('dashboard.blogs.update');
+    Route::delete('blogs/destroy/{id}', 'BlogController@destroy')->name('dashboard.blogs.destroy');
+
+    // Blog Categories
+    Route::get('blog-category', 'BlogCategoryController@index')->name('dashboard.blog_category.index');
+    Route::get('blog-category/create', 'BlogCategoryController@create')->name('dashboard.blog_category.create');
+    Route::post('blog-category/store', 'BlogCategoryController@store')->name('dashboard.blog_category.store');
+    Route::get('blog-category/edit/{id}', 'BlogCategoryController@edit')->name('dashboard.blog_category.edit');
+    Route::patch('blog-category/update/{id}', 'BlogCategoryController@update')->name('dashboard.blog_category.update');
+    Route::delete('blog-category/destroy/{id}', 'BlogCategoryController@destroy')->name('dashboard.blog_category.destroy');
+
     // Clinics
     Route::get('clinics', 'ClinicController@index')->name('dashboard.clinics.index');
     Route::get('clinics/create', 'ClinicController@create')->name('dashboard.clinics.create');

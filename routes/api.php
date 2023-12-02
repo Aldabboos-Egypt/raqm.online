@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\ClinicController;
 use App\Http\Controllers\Api\GlobalController;
 use Illuminate\Http\Request;
@@ -40,6 +41,10 @@ Route::group(['middleware' => ['app_auth_api']], function () {
     Route::post('/categories', [GlobalController::class, 'categories']);
     Route::post('/subcategories', [GlobalController::class, 'subCategories']);
     Route::post('/ads', [GlobalController::class, 'ads']);
+
+    Route::post('/blog-categories', [BlogController::class, 'blogCategories']);
+    Route::post('/blogs', [BlogController::class, 'blogs']);
+    Route::post('/blogs/{id}', [BlogController::class, 'getBlog']);
 
     Route::group(['middleware' => ['auth_api', 'lang']], function () {
 

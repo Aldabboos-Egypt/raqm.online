@@ -3,6 +3,9 @@
 return [
     'choose_category' => 'اختر الفئه',
     'welcome' => 'مرحبا',
+    'blog_category' => 'فئات المدونه',
+    'blogs' => 'المدونه',
+    'blog' => 'المدونه',
     'publish' => 'مفعل',
     'thanks_registering' => 'شكرا لتسجيلك',
     'ex_time_register' => 'من فضلك استخدم الكود لتفعيل اميلك',

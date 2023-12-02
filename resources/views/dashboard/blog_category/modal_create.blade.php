@@ -1,5 +1,5 @@
 {!! Form::open([
-    'route' => 'dashboard.categories.store',
+    'route' => 'dashboard.blog_category.store',
     'method' => 'post',
     'files' => true,
     'class' => 'needs-validation was-validated',
@@ -21,10 +21,9 @@
 
             <div class="col-md-12 col-sm-12 mb-2 pt-2">
                 {!! Form::label('description', __('lang.description')) !!}
-                <span class='txt-danger'>*</span>
+                <span class='txt-danger'></span>
                 {!! Form::text('description', old('description'), [
                     'class' => 'form-control',
-                    'required',
                     'placeholder' => __('lang.description'),
                 ]) !!}
             </div>
