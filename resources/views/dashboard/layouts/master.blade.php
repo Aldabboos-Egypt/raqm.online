@@ -57,7 +57,7 @@
 
     <script src="{{ asset('assets/js/iziToast.min.js') }}"></script>
     <script>
-        {{-- var $disabledResults = $(".search-select");
+        var $disabledResults = $(".search-select");
         $disabledResults.select2();
 
         $('a').each(function() {
@@ -84,7 +84,7 @@
                     $(this).attr('action', action);
                 }
             });
-        }) --}}
+        })
     </script>
 
     {{-- <script>
