@@ -32,6 +32,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:admin']], function
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard.index');
 
+    Route::get('/messages', [DashboardController::class, 'messages'])->name('dashboard.messages');
+
     // Categories
     Route::get('categories', 'CategoryController@index')->name('dashboard.categories.index');
     Route::get('categories/create', 'CategoryController@create')->name('dashboard.categories.create');

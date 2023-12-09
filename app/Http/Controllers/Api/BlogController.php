@@ -28,8 +28,8 @@ class BlogController extends Controller
             }
         })
             ->where(function ($q) use ($request) {
-                if ($request->blog_category_id) {
-                    $q->where('blog_category_id', $request->blog_category_id);
+                if ($request->category_id) {
+                    $q->where('blog_category_id', $request->category_id);
                 }
 
             })

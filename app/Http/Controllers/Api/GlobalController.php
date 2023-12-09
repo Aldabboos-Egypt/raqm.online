@@ -45,6 +45,21 @@ class GlobalController extends Controller
         return responseJson(true, 'success');
     }
 
-
+    public function storeMessage(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+        DB::table('messages')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+        return responseJson(true, 'success');
+    }
 
 }

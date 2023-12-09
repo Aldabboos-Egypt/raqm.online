@@ -41,6 +41,7 @@ Route::group(['middleware' => ['app_auth_api']], function () {
     Route::post('/categories', [GlobalController::class, 'categories']);
     Route::post('/subcategories', [GlobalController::class, 'subCategories']);
     Route::post('/ads', [GlobalController::class, 'ads']);
+    Route::post('/send-message', [GlobalController::class, 'storeMessage']);
 
     Route::post('/blog-categories', [BlogController::class, 'blogCategories']);
     Route::post('/blogs', [BlogController::class, 'blogs']);

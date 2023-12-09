@@ -10,6 +10,7 @@ use App\Models\Clinic;
 use App\Models\ClinicComment;
 use App\Models\ClinicRequest;
 use App\Models\GeographicData;
+use App\Models\Message;
 use App\Models\Role;
 use App\Models\Subcategory;
 use Carbon\Carbon;
@@ -52,5 +53,11 @@ class DashboardController extends Controller
             ->get();
 
         return $chart;
+    }
+
+    public function messages()
+    {
+        $resources = Message::paginate(10);
+        return view('dashboard.messages.index', compact('resources'));
     }
 }

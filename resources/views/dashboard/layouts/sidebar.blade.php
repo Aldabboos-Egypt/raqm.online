@@ -231,6 +231,21 @@
                                             </li>
                                         @endpermission
 
+                                        {{-- Categories --}}
+                                        @permission('read-category')
+                                            <li class="sidebar-list ">
+                                                <a class="sidebar-link {{ request()->routeIs('dashboard.messages') ? 'active' : '' }}"
+                                                    href="{{ route('dashboard.messages') }}">
+                                                    <svg class="stroke-icon">
+                                                        <use
+                                                            href="{{ url('/') }}/assets/svg/icon-sprite.svg#stroke-learning">
+                                                        </use>
+                                                    </svg>
+                                                    <span class="">{{ __('lang.messages') }}</span>
+                                                </a>
+                                            </li>
+                                        @endpermission
+
                                     </div>
                                 </div>
                             </div>

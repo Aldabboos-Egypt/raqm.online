@@ -3,10 +3,13 @@
 return [
     'choose_category' => 'اختر الفئه',
     'welcome' => 'مرحبا',
+    'messages' => 'الرسائل',
+    'message' => 'الرسائل',
     'blog_category' => 'فئات المدونه',
     'blogs' => 'المدونه',
     'blog' => 'المدونه',
     'publish' => 'مفعل',
+    'subject' => 'الموضوع',
     'thanks_registering' => 'شكرا لتسجيلك',
     'ex_time_register' => 'من فضلك استخدم الكود لتفعيل اميلك',
     'code' => 'كود التفعيل',
