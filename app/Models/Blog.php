@@ -15,6 +15,8 @@ class Blog extends Model
         'description',
         'blog_category_id',
         'image',
+        'title_ar',
+        'description_ar',
     ];
 
     public function category()

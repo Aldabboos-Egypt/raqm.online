@@ -28,6 +28,8 @@
                         @slot('headers')
                             <th>@lang('lang.name')</th>
                             <th>@lang('lang.description')</th>
+                            <th>@lang('lang.name_ar')</th>
+                            <th>@lang('lang.description_ar')</th>
                             <th colspan="2">@lang('lang.actions')</th>
                         @endslot
 
@@ -36,6 +38,8 @@
                                 <tr>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->description }}</td>
+                                    <td>{{ $category->name_ar }}</td>
+                                    <td>{{ $category->description_ar }}</td>
                                     <td class="d-flex justify-content-start">
                                         <a data-href="{{ route('dashboard.blog_category.edit', $category->id) }}"
                                             data-container=".edit-category-button" id="btn-edit-category" style="cursor: pointer"

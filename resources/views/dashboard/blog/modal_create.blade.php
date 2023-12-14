@@ -50,6 +50,26 @@
                     'placeholder' => __('lang.description'),
                 ]) !!}
             </div>
+
+
+            <div class="col-md-12 col-sm-13 mb-2 pt-2">
+                {!! Form::label('title_ar', __('lang.title_ar')) !!}
+                <span class='txt-danger'>*</span>
+                {!! Form::text('title_ar', old('title_ar'), [
+                    'class' => 'form-control',
+                    'required',
+                    'placeholder' => __('lang.title_ar'),
+                ]) !!}
+            </div>
+
+            <div class="col-md-12 col-sm-12 mb-2 pt-2">
+                {!! Form::label('description_ar', __('lang.description_ar')) !!}
+                <span class='txt-danger'></span>
+                {!! Form::textarea('description_ar', old('description_ar'), [
+                    'class' => 'form-control',
+                    'placeholder' => __('lang.description_ar'),
+                ]) !!}
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.close')</button>

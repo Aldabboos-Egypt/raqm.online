@@ -100,7 +100,7 @@ if (!function_exists('isMobile')) {
 if (!function_exists('toHttps')) {
     function toHttps($url)
     {
-        // return $url;
+        return $url;
         return str_replace('http://', 'https://', $url);
     }
 }

@@ -26,7 +26,9 @@ class BlogCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', Rule::unique('categories')->ignore($this->id)],
+            'name_ar' => ['required'],
             'description' => 'nullable',
+            'description_ar' => 'nullable',
         ];
     }
 }

@@ -29,6 +29,8 @@
                             <th>@lang('lang.image')</th>
                             <th>@lang('lang.title')</th>
                             <th>@lang('lang.description')</th>
+                            <th>@lang('lang.title_ar')</th>
+                            <th>@lang('lang.description_ar')</th>
                             <th>@lang('lang.views')</th>
                             <th colspan="2">@lang('lang.actions')</th>
                         @endslot
@@ -41,6 +43,8 @@
                                     </td>
                                     <td>{{ $blog->title }}</td>
                                     <td>{{ $blog->description }}</td>
+                                    <td>{{ $blog->title_ar }}</td>
+                                    <td>{{ $blog->description_ar }}</td>
                                     <td>{{ $blog->getViews() }}</td>
                                     <td class="d-flex justify-content-start">
                                         <a data-href="{{ route('dashboard.blogs.edit', $blog->id) }}" data-container=".edit-category-button"

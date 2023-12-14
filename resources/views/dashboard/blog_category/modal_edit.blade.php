@@ -32,6 +32,25 @@
                 ]) !!}
             </div>
 
+            <div class="col-md-12 col-sm-13 mb-2 pt-2">
+                {!! Form::label('name_ar', __('lang.name_ar')) !!}
+                <span class='txt-danger'>*</span>
+                {!! Form::text('name_ar', old('name_ar', $category->name_ar), [
+                    'class' => 'form-control',
+                    'required',
+                    'placeholder' => __('lang.name_ar'),
+                ]) !!}
+            </div>
+
+            <div class="col-md-12 col-sm-12 mb-2 pt-2">
+                {!! Form::label('description_ar', __('lang.description_ar')) !!}
+                <span class='txt-danger'></span>
+                {!! Form::text('description_ar', old('description_ar', $category->description_ar), [
+                    'class' => 'form-control',
+                    'placeholder' => __('lang.description_ar'),
+                ]) !!}
+            </div>
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.close')</button>
