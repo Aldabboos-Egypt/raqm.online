@@ -16,6 +16,8 @@ class BlogResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
+            'title_ar' => $this->title_ar,
+            'description_ar' => $this->description_ar,
             'blog_category_id' => $this->blog_category_id,
             'image' => url($this->image),
             'views' => $this->views ?? $this->getViews(),
