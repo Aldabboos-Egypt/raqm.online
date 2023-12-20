@@ -110,6 +110,11 @@ class ClinicController extends Controller
                 }
             })
             ->where(function ($q) use ($request) {
+                if ($request->slug) {
+                    $q->where(DB::raw('CONCAT(REPLACE(LOWER(clinics.title), " ", "-"), "-", clinics.clinic_id)'), "like", '%' . $request->slug . '%');
+                }
+            })
+            ->where(function ($q) use ($request) {
                 if ($request->category_id) {
                     $subcategoryIds = DB::table('subcategories')->where('category_id', $request->category_id)->pluck('id')->toArray();
                     if (count($subcategoryIds) > 0) {

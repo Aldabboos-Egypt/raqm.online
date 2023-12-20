@@ -21,7 +21,7 @@ class ClinicResource extends JsonResource
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'views' => $this->views,
-            'city' => $this->city,
+            'slug' => $this->slug,
             'subcategory' => $this->subcategory,
             'contact_url' => $this->contact_url,
             'has_mobile' => $this->has_mobile,

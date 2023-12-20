@@ -61,7 +61,7 @@ class Clinic extends Model
     ];
 
     protected $appends = [
-        'contact_url', 'subcategory_id',
+        'contact_url', 'subcategory_id', 'slug',
     ];
 
     public function getSubcategoryIdAttribute()
@@ -69,9 +69,16 @@ class Clinic extends Model
         return optional($this->subCategory()->first())->id;
     }
 
+    public function getSlugAttribute()
+    {
+        $slug = strtolower(str_replace(' ', '-', $this->title)) . '-' . $this->clinic_id;
+        return $slug;
+    }
+
     public function getContactUrlAttribute()
     {
-        return env('FRONT_URL') . "/v/" . $this->clinic_id;
+        $slug = strtolower(str_replace(' ', '-', $this->title)) . '-' . $this->clinic_id;
+        return env('FRONT_URL') . "/v/" . $slug;
     }
 
     public function subCategory()
