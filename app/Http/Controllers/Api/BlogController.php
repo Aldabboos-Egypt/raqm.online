@@ -55,9 +55,10 @@ class BlogController extends Controller
         return responseJson(true, 'success');
     }
 
-    public function getBlog($id)
+    public function getBlog($slug)
     {
-        return new BlogResource(Blog::find($id));
+        $blog = Blog::where(DB::raw('REPLACE(LOWER(blogs.title), " ", "-")'), "like", '%' . $slug . '%')->first();
+        return new BlogResource(Blog::find($blog));
     }
 
 }

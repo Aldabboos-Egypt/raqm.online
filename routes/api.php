@@ -45,7 +45,7 @@ Route::group(['middleware' => ['app_auth_api']], function () {
 
     Route::post('/blog-categories', [BlogController::class, 'blogCategories']);
     Route::post('/blogs', [BlogController::class, 'blogs']);
-    Route::post('/blogs/{id}', [BlogController::class, 'getBlog']);
+    Route::post('/blogs/{slug}', [BlogController::class, 'getBlog']);
 
     Route::group(['middleware' => ['auth_api', 'lang']], function () {
 
