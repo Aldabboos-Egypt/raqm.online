@@ -59,11 +59,11 @@ class BlogController extends Controller
     {
         $blog = Blog::where(DB::raw('REPLACE(LOWER(blogs.title_ar), " ", "-")'), "like", '%' . $slug . '%')->first();
 
-        return [
-            'slug' => $slug,
-            'blog' => $blog,
-        ];
-        return new BlogResource(Blog::find($blog));
+        // return [
+        //     'slug' => $slug,
+        //     'blog' => $blog,
+        // ];
+        return new BlogResource($blog);
     }
 
 }
