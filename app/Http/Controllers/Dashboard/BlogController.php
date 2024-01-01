@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Subcategory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
@@ -37,7 +39,9 @@ class BlogController extends Controller
     public function create()
     {
         $categories = BlogCategory::pluck('name', 'id');
-        return view('dashboard.blog.modal_create', compact('categories'));
+        $subCategories = Subcategory::get();
+
+        return view('dashboard.blog.modal_create', compact('categories', 'subCategories'));
     }
 
     /**
@@ -51,8 +55,10 @@ class BlogController extends Controller
         if ($request->image) {
             $data['image'] = $this->uploadFile($request->image, 'uploads/blogs/');
         }
-        Blog::create($data);
+        $blog = Blog::create($data);
         toast(__('lang.done'), 'success');
+        $this->updateBlogSubCategory($blog);
+
         return redirect()->route('dashboard.blogs.index');
     }
 
@@ -65,7 +71,9 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         $categories = BlogCategory::pluck('name', 'id');
-        return view('dashboard.blog.modal_edit', compact('blog', 'categories'));
+        $subCategories = Subcategory::get();
+
+        return view('dashboard.blog.modal_edit', compact('blog', 'categories', 'subCategories'));
     }
 
     /**
@@ -85,8 +93,24 @@ class BlogController extends Controller
             $data['image'] = $this->uploadFile($request->image, 'uploads/blogs/');
         }
         $blog->update($data);
+        $this->updateBlogSubCategory($blog);
         toast(__('dashboard.done'), 'success');
         return redirect()->route('dashboard.blogs.index');
+    }
+
+    public function updateBlogSubCategory($blog)
+    {
+        DB::table('blogs_sub_categories')
+            ->where('blog_id', $blog->id)
+            ->delete();
+
+        if (request()->sub_category_id) {
+            DB::table('blogs_sub_categories')->insert([
+                'blog_id' => $blog->id,
+                'sub_category_id' => request()->sub_category_id,
+            ]);
+        }
+        return true;
     }
 
     /**

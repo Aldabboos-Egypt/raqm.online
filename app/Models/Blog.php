@@ -19,6 +19,21 @@ class Blog extends Model
         'description_ar',
     ];
 
+    protected $appends = [
+        'subcategory_id',
+    ];
+
+    public function getBlogSubCategory()
+    {
+        $resource = DB::table('blogs_sub_categories')->where('blog_id', $this->id)->first();
+        return $resource;
+    }
+
+    public function getSubcategoryIdAttribute()
+    {
+        return optional($this->getBlogSubCategory())->sub_category_id;
+    }
+
     public function category()
     {
         return $this->belongsTo(BlogCategory::class, 'blog_category_id');

@@ -69,6 +69,18 @@
                 ]) !!}
             </div>
 
+            <div class="col-md-12 pt-3">
+                {!! Form::label('sub_category_id', __('lang.subcategory')) !!}
+                <select class="form-select" name="sub_category_id" id="sub_category_id">
+                    <option value="">{{ __('lang.choose_subcategory') }}</option>
+                    @foreach ($subCategories as $item)
+                        <option class="cat-option cat-{{ $item->category_id }}" value="{{ $item->id }}"
+                            {{ old('sub_category_id') == $item->id || $blog->sub_category_id == $item->id ? 'selected' : '' }}>
+                            {{ $item->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.close')</button>

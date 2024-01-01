@@ -29,6 +29,7 @@ class BlogRequest extends FormRequest
             'title_ar' => ['required'],
             // ignore required if edit
             'image' => ['nullable'],
+            'sub_category_id' => ['nullable'],
             'blog_category_id' => ['required'],
             'description' => ['nullable'],
             'blog_category_id' => 'required',
