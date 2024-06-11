@@ -32,9 +32,15 @@ class BlogRequest extends FormRequest
             'sub_category_id' => ['nullable'],
             'blog_category_id' => ['required'],
             'description' => ['nullable'],
-            'blog_category_id' => 'required',
-            'description' => 'nullable',
-            'description_ar' => 'nullable',
+            'blog_category_id' => ['required'],
+            'description_ar' => ['nullable'],
+            'meta_title_ar' => ['nullable'],
+            'meta_title' => ['nullable'],
+            'meta_description_ar' => ['nullable'],
+            'meta_description' => ['nullable'],
+            'meta_keywords_ar' => ['nullable'],
+            'meta_keywords' => ['nullable'],
+            'url' => ['nullable'],
         ];
     }
 }

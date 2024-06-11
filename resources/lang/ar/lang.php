@@ -161,4 +161,12 @@ return [
     'no' => 'لا',
     'confirm_delete' => 'تأكيد الحذف',
     'confirm_delete_message' => 'هل انت متاكد من عملية الحذف ؟',
+    'meta_title_ar' => 'ميتا -العنوان بالعربيه',
+    'meta_description_ar' => ' ميتا-الوصف بالعربيه',
+    'meta_keywords_ar' => 'ميتا الكلامات الدالة بالعربيه',
+    'meta_title' => 'ميتا -العنوان ',
+    'meta_description' => ' ميتا-الوصف ',
+    'meta_keywords' => 'ميتا الكلامات الدالة ',
+    'url'=>'url'
+
 ];

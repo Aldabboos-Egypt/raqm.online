@@ -17,6 +17,13 @@ class Blog extends Model
         'image',
         'title_ar',
         'description_ar',
+        'meta_title_ar',
+        'meta_title',
+        'meta_description_ar',
+        'meta_description',
+        'meta_keywords_ar',
+        'meta_keywords',
+        'url'
     ];
 
     protected $appends = [
