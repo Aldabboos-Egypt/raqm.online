@@ -112,4 +112,6 @@
             });
         });
     </script>
+<script src="{{url('admin/assets/js/handleTinyMce.js')}}"></script>
+
 @endsection

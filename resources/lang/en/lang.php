@@ -149,4 +149,11 @@ return [
     'no' => 'No',
     'confirm_delete' => 'Confirm Delete',
     'confirm_delete_message' => 'Are you sure you want to delete this item?',
+    'meta_title' => 'Meta Title',
+    'meta_description' => ' Meta Description ',
+    'meta_keywords' => 'Meta Keywords',
+    'url'=>'url',
+    'meta_title_ar' => 'Meta Title Ar',
+    'meta_description_ar' => ' Meta Description Ar ',
+    'meta_keywords_ar' => 'Meta Keywords Ar',
 ];
