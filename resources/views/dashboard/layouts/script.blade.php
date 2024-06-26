@@ -28,6 +28,8 @@
 <script src="{{ asset('assets/js/chart/apex-chart/stock-prices.js') }}"></script>
 <script src="{{ asset('assets/js/chart/apex-chart/moment.min.js') }}"></script>
 <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+<!-- <script src="https://cdn.tiny.cloud/1/xinfre85r3x296dyskrhlp84bidx71ehfl4orgx1iqmb9pai/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script> -->
+
 
 @yield('js')
 @yield('script')
@@ -94,3 +96,19 @@
     });
 
 </script>
+<!-- <script>
+    tinymce.init({
+        selector: '#editor',
+        height: 300,
+        plugins: [
+            'advlist autolink lists link image imagetools charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+        content_style: 'body { font-family: Arial, sans-serif; font-size: 14px }'
+    });
+</script> -->

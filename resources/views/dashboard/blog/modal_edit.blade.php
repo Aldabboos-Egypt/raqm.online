@@ -85,23 +85,20 @@
                 <span class='txt-danger'></span>
                 {!! Form::text('meta_title', old('meta_title', $blog->meta_title), [
                     'class' => 'form-control',
-                    'required',
                     'placeholder' => __('lang.meta_title'),
                 ]) !!}
             </div>
 
             <div class="col-md-12 col-sm-12 mb-2 pt-2">
                 {!! Form::label('meta_description', __('lang.meta_description')) !!}
-                <span class='txt-danger'></span>
-                {!! Form::textarea('meta_description', old('meta_description', $blog->meta_description), [
+                {!! Form::text('meta_description', old('meta_description', $blog->meta_description), [
                     'class' => 'form-control',
                     'placeholder' => __('lang.meta_description'),
                 ]) !!}
             </div>
             <div class="col-md-12 col-sm-12 mb-2 pt-2">
                 {!! Form::label('meta_keywords', __('lang.meta_keywords')) !!}
-                <span class='txt-danger'></span>
-                {!! Form::textarea('meta_keywords', old('meta_keywords',$blog->meta_keywords), [
+                {!! Form::text('meta_keywords', old('meta_keywords',$blog->meta_keywords), [
                     'class' => 'form-control',
                     'placeholder' => __('lang.meta_keywords'),
                 ]) !!}
@@ -112,7 +109,6 @@
                 <span class='txt-danger'></span>
                 {!! Form::text('meta_title_ar', old('meta_title_ar',$blog->meta_title_ar), [
                     'class' => 'form-control',
-                    'required',
                     'placeholder' => __('lang.meta_title_ar'),
                 ]) !!}
             </div>
@@ -120,7 +116,7 @@
             <div class="col-md-12 col-sm-12 mb-2 pt-2">
                 {!! Form::label('meta_description_ar', __('lang.meta_description_ar')) !!}
                 <span class='txt-danger'></span>
-                {!! Form::textarea('meta_description_ar', old('meta_description_ar',$blog->meta_description_ar), [
+                {!! Form::text('meta_description_ar', old('meta_description_ar',$blog->meta_description_ar), [
                     'class' => 'form-control',
                     'placeholder' => __('lang.meta_description_ar'),
                 ]) !!}
@@ -128,7 +124,7 @@
             <div class="col-md-12 col-sm-12 mb-2 pt-2">
                 {!! Form::label('meta_keywords_ar', __('lang.meta_keywords_ar')) !!}
                 <span class='txt-danger'></span>
-                {!! Form::textarea('meta_keywords_ar', old('meta_keywords_ar',$blog->meta_keywords_ar), [
+                {!! Form::text('meta_keywords_ar', old('meta_keywords_ar',$blog->meta_keywords_ar), [
                     'class' => 'form-control',
                     'placeholder' => __('lang.meta_keywords_ar'),
                 ]) !!}
@@ -138,7 +134,6 @@
                 <span class='txt-danger'></span>
                 {!! Form::text('url', old('url',$blog->url), [
                     'class' => 'form-control',
-                    'required',
                     'placeholder' => __('lang.url'),
                 ]) !!}
             </div>

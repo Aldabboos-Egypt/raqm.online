@@ -23,6 +23,13 @@ class BlogResource extends JsonResource
             'image' => url($this->image),
             'views' => $this->views ?? $this->getViews(),
             'category' => optional($this->category)->name,
+            'meta_title_ar'=>$this->meta_title_ar,
+            'meta_title'=>$this->meta_title,
+            'meta_description_ar'=>$this->meta_description_ar,
+            'meta_description'=>$this->meta_description,
+            'meta_keywords_ar'=>$this->meta_keywords_ar,
+            'meta_keywords'=>$this->meta_keywords,
+            'url'=>$this->url,
             'created_at' => $this->created_at->diffForHumans(),
         ];
     }

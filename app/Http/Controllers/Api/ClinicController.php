@@ -110,6 +110,11 @@ class ClinicController extends Controller
                 }
             })
             ->where(function ($q) use ($request) {
+                if ($request->city_id) {
+                    $q->where('clinics.city_id', $request->city_id);
+                }
+            })
+            ->where(function ($q) use ($request) {
                 if ($request->slug) {
                     $q->where(DB::raw('CONCAT(REPLACE(LOWER(clinics.title), " ", "-"), "-", clinics.clinic_id)'), "like", '%' . $request->slug . '%');
                 }

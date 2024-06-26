@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\AddResource;
 use App\Models\Add;
 use Illuminate\Http\Request;
+use App\Models\GeographicData;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\AddResource;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CitiesResource;
 
 class GlobalController extends Controller
 {
@@ -60,6 +62,11 @@ class GlobalController extends Controller
             'message' => $request->message,
         ]);
         return responseJson(true, 'success');
+    }
+    public function cities(Request $request)
+    {
+        $cities=GeographicData::select('city', 'city_id','created_at')->get();
+        return CitiesResource::collection($cities);
     }
 
 }
